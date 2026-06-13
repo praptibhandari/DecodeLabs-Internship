@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project 3 - Interactive Web Elements</title>
+  <link rel="stylesheet" href="Style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="app-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">⬡</div>
+        <div>
+          <h1 class="brand-title">Interactive Web Elements</h1>
+          <p class="brand-subtitle">DOM manipulation • Live updates • Smooth UI</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+          <span class="toggle-icon" aria-hidden="true">🌙</span>
+          <span class="toggle-text">Dark mode</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="grid">
+      
+      <!-- Counter -->
+      <article class="card" aria-labelledby="counterTitle">
+        <h2 class="card-title" id="counterTitle">Interactive Counter</h2>
+        <p class="card-desc">Increment, decrement, and reset (no negative values).</p>
+
+        <div class="counter-display" aria-live="polite">
+          <span class="counter-label">Current:</span>
+          <span class="counter-value" id="counterValue">0</span>
+        </div>
+
+        <div class="button-row">
+          <button class="btn" id="decrementBtn" type="button">Decrement</button>
+          <button class="btn primary" id="incrementBtn" type="button">Increment</button>
+          <button class="btn ghost" id="resetCounterBtn" type="button">Reset</button>
+        </div>
+      </article>
+
+      <!-- Character counter -->
+      <article class="card" aria-labelledby="charTitle">
+        <h2 class="card-title" id="charTitle">Live Character Counter</h2>
+        <p class="card-desc">Remaining characters update in real time.</p>
+
+        <label class="field-label" for="charInput">Type your text</label>
+        <textarea
+          id="charInput"
+          class="textarea"
+          rows="5"
+          maxlength="200"
+          placeholder="Start typing... (max 200 characters)"
+        ></textarea>
+
+        <div class="hint" role="status">
+          <span>Remaining:</span>
+          <strong id="charRemaining">200</strong>
+          <span>/ 200</span>
+        </div>
+      </article>
+
+      <!-- Quote generator -->
+      <article class="card" aria-labelledby="quoteTitle">
+        <h2 class="card-title" id="quoteTitle">Dynamic Quote Generator</h2>
+        <p class="card-desc">A random quote with a smooth fade animation.</p>
+
+        <div class="quote-wrap">
+          <p class="quote" id="quoteText">Click “Generate Quote” to begin.</p>
+        </div>
+
+        <button class="btn primary" id="quoteBtn" type="button">Generate Quote</button>
+      </article>
+
+      <!-- FAQ -->
+      <article class="card" aria-labelledby="faqTitle">
+        <h2 class="card-title" id="faqTitle">Interactive FAQ</h2>
+        <p class="card-desc">Expand/collapse answers. Only one open at a time.</p>
+
+        <div class="faq" id="faq">
+          <div class="faq-item" data-faq>
+            <button class="faq-q" type="button" aria-expanded="false">
+              What is DOM manipulation?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" hidden>
+              DOM manipulation means using JavaScript to change the structure, content, and styles of the page dynamically.
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq>
+            <button class="faq-q" type="button" aria-expanded="false">
+              Where can I store user preferences?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" hidden>
+              You can use <code>localStorage</code> to persist preferences like theme selection across page reloads.
+            </div>
+          </div>
+
+          <div class="faq-item" data-faq>
+            <button class="faq-q" type="button" aria-expanded="false">
+              How do you handle form validation?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" hidden>
+              Use JavaScript to validate inputs before submission and show helpful error messages—without refreshing the page.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Contact form -->
+      <article class="card" aria-labelledby="contactTitle">
+        <h2 class="card-title" id="contactTitle">Contact Form</h2>
+        <p class="card-desc">Client-side validation with a success message (no page refresh).</p>
+
+        <form id="contactForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label class="field-label" for="nameInput">Name</label>
+              <input class="input" id="nameInput" name="name" type="text" autocomplete="name" required minlength="2" />
+              <p class="error" id="nameError" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="emailInput">Email</label>
+              <input
+                class="input"
+                id="emailInput"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                placeholder="example@email.com"
+              />
+              <p class="error" id="emailError" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="messageInput">Message</label>
+            <textarea
+              class="textarea"
+              id="messageInput"
+              name="message"
+              rows="4"
+              required
+              minlength="10"
+              placeholder="Write at least 10 characters..."
+            ></textarea>
+            <p class="error" id="messageError" aria-live="polite"></p>
+          </div>
+
+          <button class="btn primary" type="submit">Send Message</button>
+
+          <div class="success" id="successMessage" role="status" aria-live="polite" hidden>
+            Message sent! ✅ We’ll get back to you soon.
+          </div>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>
+        Built with <span aria-hidden="true">✦</span> HTML5 • CSS3 • Vanilla JavaScript
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
+
